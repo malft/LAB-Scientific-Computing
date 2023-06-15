@@ -1,0 +1,98 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/malft/LAB-Scientific-Computing/blob/main/sesi_5.2_Mochammad%20Alfito%20Dwi%20Cahyono_2602176723ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7iYE5RE5r91E",
+        "outputId": "c8b61aca-4aff-4f73-bec0-f43507c8dbb7"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1.9835235375094544\n",
+            "1.9835235375094546\n"
+          ]
+        }
+      ],
+      "source": [
+        "from numpy.lib.function_base import hamming\n",
+        "import numpy as np\n",
+        "from scipy.integrate import trapz\n",
+        "\n",
+        "a = 0\n",
+        "b = np.pi\n",
+        "n = 11\n",
+        "h = (b - a) / (n - 1)\n",
+        "x = np. linspace (a, b, n)\n",
+        "f = np.sin(x)\n",
+        "\n",
+        "I_trapz = trapz (f,x)\n",
+        "I_trap = (h/2) * (f[0] + 2 * sum (f[1:n-1]) + f[n-1])\n",
+        "\n",
+        "print (I_trapz)\n",
+        "print (I_trap)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from scipy.integrate import quad\n",
+        "\n",
+        "I_quad, est_err_quad = quad (np.sin, 0, np.pi)\n",
+        "\n",
+        "print (I_quad)\n",
+        "err_quad = 2 - I_quad\n",
+        "print (est_err_quad, err_quad)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Aw-NeMLbsDIR",
+        "outputId": "ed63362d-52a9-48d3-a5ab-911ec1a4dd1e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2.0\n",
+            "2.220446049250313e-14 0.0\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
